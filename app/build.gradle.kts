@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp") version "2.2.10-2.0.2"
-    id("org.jetbrains.kotlin.plugin.compose")
+//    id("com.google.devtools.ksp") version "2.2.10-2.0.2"
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
@@ -70,5 +72,9 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.compiler) // Use ksp() instead of implementation() for the compiler
+    implementation(libs.androidx.hilt.navigation.compose)
 }
 
